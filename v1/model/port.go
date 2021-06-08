@@ -28,7 +28,7 @@ func (Port) TableName() string {
 type PortFund struct {
 	ID         uint            `gorm:"primaryKey" json:"-"`
 	FundID     string          `json:"fund_id"`
-	FundCode   string          `json:"fund_code"`
+	FundCode   string          `json:"code"`
 	BcatID     uint8           `json:"bcat_id"`
 	PortID     uint            `json:"-"`
 	Cost       decimal.Decimal `json:"cost" gorm:"type:decimal(12,2);"`
