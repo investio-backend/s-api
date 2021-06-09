@@ -33,6 +33,7 @@ func (s *walletService) CreateWallet(userID uint) (wallet model.Wallet, err erro
 		AvaliableBal: s.startBalance,
 		InOrderBal:   decimal.NewFromInt32(0),
 		InAssetBal:   decimal.NewFromInt32(0),
+		TotalSpend:   decimal.NewFromInt32(0),
 	}
 	err = db.SimDB.Create(&wallet).Error
 	return
@@ -56,6 +57,7 @@ func (s *walletService) Purchase(amount decimal.Decimal, userID uint) (err error
 
 	wallet.AvaliableBal = wallet.AvaliableBal.Sub(amount)
 	wallet.InAssetBal = wallet.InAssetBal.Add(amount)
+	wallet.TotalSpend = wallet.TotalSpend.Add(amount)
 	err = db.SimDB.Save(&wallet).Error
 	return
 }
@@ -69,6 +71,7 @@ func (s *walletService) ReversePurchase(amount decimal.Decimal, userID uint) (er
 
 	wallet.AvaliableBal = wallet.AvaliableBal.Add(amount)
 	wallet.InAssetBal = wallet.InAssetBal.Sub(amount)
+	wallet.TotalSpend = wallet.TotalSpend.Sub(amount)
 	err = db.SimDB.Save(&wallet).Error
 	return
 }
