@@ -15,7 +15,7 @@ type Transaction struct {
 	PortID    uint            `json:"port_id"`
 	NAV       decimal.Decimal `gorm:"type:decimal(14,4);"`
 	Amount    decimal.Decimal `json:"amount" gorm:"type:decimal(12,2);"`
-	Unit      decimal.Decimal `json:"unit" gorm:"type:decimal(14,4);"`
+	Unit      decimal.Decimal `json:"unit" gorm:"type:decimal(18,8);"`
 	CreatedAt time.Time       `json:"timestamp"`
 	UpdatedAt time.Time       `json:"-"`
 	DeletedAt gorm.DeletedAt  `gorm:"index" json:"-"`

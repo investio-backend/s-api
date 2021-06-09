@@ -32,7 +32,7 @@ type PortFund struct {
 	BcatID     uint8           `json:"bcat_id"`
 	PortID     uint            `json:"-"`
 	Cost       decimal.Decimal `json:"cost" gorm:"type:decimal(12,2);"`
-	Unit       decimal.Decimal `json:"unit" gorm:"type:decimal(14,4);"`
+	Unit       decimal.Decimal `json:"unit" gorm:"type:decimal(18,8);"`
 	PlRealized decimal.Decimal `json:"pl_realized" gorm:"type:decimal(12,2);"`
 	CreatedAt  time.Time       `json:"-"`
 	UpdatedAt  time.Time       `json:"-"`
