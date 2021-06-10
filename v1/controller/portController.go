@@ -134,6 +134,9 @@ func (c *portController) BuyFund(ctx *gin.Context) {
 	transaction := model.Transaction{
 		DataDate: req.DataDate.ParseTime(),
 		PortID:   req.PortID,
+		FundID:   req.FundID,
+		FundCode: req.FundCode,
+		BcatID:   req.BcatID,
 		Type:     1, // buy
 		UserID:   accessJWT.UserID,
 		NAV:      req.NAV,
@@ -227,6 +230,9 @@ func (c *portController) SellFund(ctx *gin.Context) {
 	transaction := model.Transaction{
 		DataDate: req.DataDate.ParseTime(),
 		PortID:   req.PortID,
+		FundID:   req.FundID,
+		FundCode: req.FundCode,
+		BcatID:   req.BcatID,
 		Type:     2, // buy
 		UserID:   accessJWT.UserID,
 		NAV:      req.NAV,
