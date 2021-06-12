@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shopspring/decimal"
 	log "github.com/sirupsen/logrus"
 	"gitlab.com/investio/backend/sim-api/v1/dto"
 	"gitlab.com/investio/backend/sim-api/v1/model"
@@ -189,6 +190,17 @@ func (c *portController) SellFund(ctx *gin.Context) {
 		ctx.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
 			"reason": "Invalid data provided",
 		})
+		return
+	}
+
+	// Validate input
+	if req.Amount.LessThanOrEqual(decimal.NewFromInt32(0)) {
+		ctx.AbortWithStatus(http.StatusBadRequest)
+		return
+	}
+
+	if req.Unit.LessThanOrEqual(decimal.NewFromInt32(0)) {
+		ctx.AbortWithStatus(http.StatusBadRequest)
 		return
 	}
 
